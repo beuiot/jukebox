@@ -65,6 +65,12 @@ this.UploadTab = Class.create(Tab,
 		}
 	},
 
+	requestYoutubeDl: function()
+	{
+		var input = this.DOM.down('.'+this.rootCSS+'-upload-youtubedl-media-url');
+		this.jukebox.requestYoutubeDl(input.value);
+	},
+
 	updateUploadedSong: function(file_name)
 	{
 		if(this.lastSendingUpdateIdentifier === null)
@@ -734,6 +740,8 @@ this.UploadTab = Class.create(Tab,
 		this.DOM.down('.'+this.rootCSS+'-upload-batch-controls').update(controller);
 
 		this.DOM.down('.'+this.rootCSS+'-upload-global-submit').on("click",this.apply_global_modifications.bind(this));
+
+		this.DOM.down('.'+this.rootCSS+'-upload-youtubedl-submit').on("click",this.requestYoutubeDl.bind(this));
 
 		var genres = this.DOM.down('.'+this.rootCSS+'-upload-global-action-genre-select');
 		//fill genre global list

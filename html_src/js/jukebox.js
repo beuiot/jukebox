@@ -653,6 +653,18 @@ function Jukebox(element, opts)
 	};
 
 	/**
+	* Request a youtube download
+	* @param {string} mediaurl - the youtube url to downdoal
+	* @return {Jukebox} this.
+	*/
+	this.requestYoutubeDl = function(mediaurl)
+	{
+		var action = new Action("request_youtube_dl", {media_url: mediaurl});
+		_doAction(action);
+		return this;
+	};
+
+	/**
 	* Validate an uploaded file
 	* @param {string|array} filename - The upload file(s) to validate
 	* @return {Jukebox} this.

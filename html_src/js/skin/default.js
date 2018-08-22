@@ -197,7 +197,9 @@ Jukebox.UI.skins["default"] =
 </select>\
 <input class="#{root}-upload-global-min-idx" type="text" value="min" size=4/>\
 <input class="#{root}-upload-global-max-idx" type="text" value="max" size=4/>\
-<input class="#{root}-upload-global-submit" type="submit" value="Appliquer" />',
+<input class="#{root}-upload-global-submit" type="submit" value="Appliquer" />\
+<input class="#{root}-upload-youtubedl-media-url" type="text" value="" />\
+<input class="#{root}-upload-youtubedl-submit" type="submit" value="Youtubedl" />',
 				controlButton: '<span class="#{root}-#{name}"><i class="material-icons">#{icon}</i></span>'
 			},
 			SearchTab:

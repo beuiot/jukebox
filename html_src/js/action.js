@@ -49,6 +49,7 @@ function Action(name, opts)
 		case "search":
 		case "update_uploaded_file":
 		case "add_search_to_play_queue":
+		case "request_youtube_dl":
 			Extend(this, opts);
 			break;
 		case "delete_uploaded_file":

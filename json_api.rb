@@ -191,6 +191,9 @@ class JsonManager < HttpNode
       resp [:uploaded_files] = {
         :action_response        => action_response
       };
+    when "request_youtube_dl"
+      JsonManager.add_message(resp, MSG_LVL_INFO, nil, "Requesting download of #{req["media_url"]}");
+      UploadManager.downloadMedia(req["media_url"], File.join(@upload_dir, user))
     when "select_plugin"
       ch.set_plugin(req["plugin_name"]);
     else

@@ -95,6 +95,16 @@ class UploadManager < HttpNode
     end
   end
 
+  def self.downloadMedia(mediaUrl, targetDirectory)
+    fullPath = File.join(targetDirectory, "%(id)s.%(ext)s")
+    command = "youtube-dl \"#{mediaUrl}\" -x --audio-format mp3 --add-metadata -o \"#{fullPath}\""
+    warning(command)
+
+    pid_downloader = fork {
+      exec(command);
+    }
+  end
+
   def self.getUploadedFiles(uploadDirectory, user)
 
     if ( not File.directory?(uploadDirectory))

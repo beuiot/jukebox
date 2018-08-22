@@ -18,6 +18,20 @@ Web client installation is facultative (only if you wish to develop html/js).
 * [Server installation tutorial](ServerInstallation)
 * [Web client installation tutorial](gruntjs)
 
+gem install rev sqlite3 rpam-ruby19 redmine_client bcrypt-ruby
+
+gem install rainbow -v 2.2.2
+gem install rubocop -v 0.50.0
+gem install nokogiri -v 1.6.8.1
+gem install ruby-debug-ide
+gem install debase
+gem install ruby-lint
+gem install reek -v 3.11
+gem install fasterer
+gem install rcodetools fastri
+
+youtube-dl https://www.youtube.com/watch?v=Mfm0FTMmwxw -x --audio-format mp3 --add-metadata -o "%(id)s.%(ext)s"
+
 ## Start/Stop the server
 
 Start:
