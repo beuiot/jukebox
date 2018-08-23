@@ -5,6 +5,7 @@ require 'rev'
 require 'http.rb'
 require 'display.rb'
 require 'uri'
+require 'tmpdir'
 
 class UploadManager < HttpNode
   def initialize(conf)
@@ -96,12 +97,22 @@ class UploadManager < HttpNode
   end
 
   def self.downloadMedia(mediaUrl, targetDirectory)
-    fullPath = File.join(targetDirectory, "%(id)s.%(ext)s")
-    command = "youtube-dl \"#{mediaUrl}\" -x --audio-format mp3 --add-metadata -o \"#{fullPath}\""
-    warning(command)
-
     pid_downloader = fork {
-      exec(command);
+      Dir.mktmpdir("jukebox-media-dl") {|tempDir|
+        fullTempPath = File.join(tempDir, "%(id)s.%(ext)s")
+        command = "youtube-dl \"#{mediaUrl}\" -x --audio-format mp3 --add-metadata -o \"#{fullTempPath}\""
+        warning(command)
+        system(command)
+
+        warning("Command endend")
+
+        globSearch = File.join(tempDir, "*.mp3")
+        warning("Looking for files: " + globSearch)
+        Dir.glob(File.join(tempDir, "*.mp3")).each do |f|
+          warning("Found " + f)
+          FileUtils.mv(f, targetDirectory)
+        end
+      }
     }
   end
 
